@@ -1,0 +1,17 @@
+{
+  "name": "@zauth/contracts",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "hardhat compile",
+    "test": "hardhat test",
+    "lint": "echo 'no lint'",
+    "typecheck": "echo 'no typecheck'",
+    "chain": "hardhat node",
+    "setup": "hardhat run --network localhost scripts/deploy.ts"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.4",
+    "typescript": "^5.5.3"
+  }
+}
