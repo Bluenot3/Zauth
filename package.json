@@ -1,0 +1,19 @@
+{
+  "name": "zauth",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@9.6.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "pnpm --filter @zauth/web dev",
+    "dev:api": "pnpm --filter @zauth/api dev",
+    "chain": "pnpm --filter @zauth/contracts chain",
+    "setup": "pnpm --filter @zauth/contracts chain -- --hostname 127.0.0.1 & pnpm --filter @zauth/contracts setup && pnpm --filter @zauth/api migrate && pnpm --filter @zauth/api seed",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test"
+  }
+}

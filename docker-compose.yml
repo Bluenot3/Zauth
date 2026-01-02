@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: zauth
+      POSTGRES_PASSWORD: zauth
+      POSTGRES_DB: zauth
+    ports:
+      - "5432:5432"
+    volumes:
+      - zauth_db:/var/lib/postgresql/data
+  api:
+    image: node:20
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: bash -lc "pnpm -C /app i && pnpm --filter @zauth/api dev"
+    environment:
+      DATABASE_URL: postgres://zauth:zauth@db:5432/zauth
+      AUTH_SECRET: dev-secret
+      PUBLIC_WEB_URL: http://localhost:3000
+      API_PORT: 4000
+      RPC_URL: http://host.docker.internal:8545
+      CONTRACT_ADDRESS: ${CONTRACT_ADDRESS}
+      ADMIN_PRIVATE_KEY: ${ADMIN_PRIVATE_KEY}
+      CHAIN_ID: 31337
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+volumes:
+  zauth_db:
