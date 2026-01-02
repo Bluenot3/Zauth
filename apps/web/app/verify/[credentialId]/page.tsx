@@ -32,6 +32,7 @@ export default async function VerifyPage({ params }: { params: { credentialId: s
     <main className="glass p-8">
       <div className="flex items-center justify-between">
         <div>
+          <p className="text-cyan-200/80 text-xs uppercase tracking-[0.3em]">ZEN AI Co Verified</p>
           <h2 className="text-2xl font-semibold">Verification</h2>
           <p className="text-white/60 text-sm">Credential ID: {data.credential.credential_id}</p>
         </div>
@@ -70,8 +71,20 @@ export default async function VerifyPage({ params }: { params: { credentialId: s
         </div>
       </div>
 
-      <div className="mt-6 text-sm text-white/70">
-        Hash match: {data.hashMatches ? "✅" : "❌"} | Chain match: {data.chainMatches ? "✅" : "❌"}
+      <div className="mt-6 grid md:grid-cols-[1fr_180px] gap-4 items-center">
+        <div className="text-sm text-white/70">
+          Hash match: {data.hashMatches ? "✅" : "❌"} | Chain match: {data.chainMatches ? "✅" : "❌"}
+        </div>
+        <div className="rounded-xl border border-white/10 bg-white/5 p-3 text-center text-xs text-white/60">
+          <div className="mb-2">Share Verification</div>
+          <img
+            alt="Verification QR"
+            className="mx-auto rounded-lg border border-white/10"
+            src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(
+              `${process.env.NEXT_PUBLIC_WEB_URL || \"http://localhost:3000\"}/verify/${params.credentialId}`
+            )}`}
+          />
+        </div>
       </div>
     </main>
   );
