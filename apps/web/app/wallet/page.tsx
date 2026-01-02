@@ -13,25 +13,19 @@ type Credential = {
 export default function WalletPage() {
   const [wallet, setWallet] = useState("");
   const [credentials, setCredentials] = useState<Credential[]>([]);
-  const [loading, setLoading] = useState(false);
 
   const fetchCredentials = async () => {
-    setLoading(true);
     const res = await fetch(`${apiBase}/wallet/${wallet}/credentials`);
     if (res.ok) {
       const data = await res.json();
       setCredentials(data);
     }
-    setLoading(false);
   };
 
   return (
     <main className="grid gap-6">
       <section className="glass p-6">
         <h2 className="text-xl font-semibold mb-3">Wallet Credentials</h2>
-        <p className="text-white/60 text-sm mb-4">
-          Every credential issued to this wallet becomes part of a living professional ledger.
-        </p>
         <div className="flex flex-col md:flex-row gap-4">
           <input
             className="rounded-lg bg-white/10 p-3 flex-1"
@@ -43,7 +37,7 @@ export default function WalletPage() {
             className="bg-blue-500 hover:bg-blue-400 transition rounded-lg px-4 py-3 font-semibold"
             onClick={fetchCredentials}
           >
-            {loading ? "Loading..." : "Load Credentials"}
+            Load Credentials
           </button>
         </div>
       </section>
@@ -62,16 +56,6 @@ export default function WalletPage() {
               >
                 View Verification
               </a>
-            </div>
-            <div className="mt-3 flex flex-wrap gap-2 text-xs text-white/70">
-              {Object.entries(credential.metadata.fields || {}).map(([key, value]) => (
-                <span
-                  key={key}
-                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1"
-                >
-                  {key}: {value}
-                </span>
-              ))}
             </div>
           </div>
         ))}

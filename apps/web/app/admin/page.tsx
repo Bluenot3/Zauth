@@ -87,10 +87,8 @@ export default function AdminPage() {
   return (
     <main className="grid gap-6">
       <section className="glass p-6">
-        <h2 className="text-xl font-semibold mb-3">ZENAuth Admin Console</h2>
-        <p className="text-white/60 text-sm mb-4">
-          Authenticate, craft templates, and issue credentials that become part of a permanent professional ledger.
-        </p>
+        <h2 className="text-xl font-semibold mb-3">Admin Console</h2>
+        <p className="text-white/60 text-sm mb-4">Authenticate, create templates, and issue credentials.</p>
         <div className="grid md:grid-cols-3 gap-4">
           <input
             className="rounded-lg bg-white/10 p-3"
@@ -121,7 +119,7 @@ export default function AdminPage() {
             className="bg-emerald-500 hover:bg-emerald-400 transition rounded-lg px-4 py-3 font-semibold"
             onClick={createTemplate}
           >
-            Create ZEN Template
+            Create Starter Template
           </button>
           <input
             className="rounded-lg bg-white/10 p-3"
